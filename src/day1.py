@@ -5,6 +5,32 @@ def get_input(filename):
     return text_file.readlines()
 
 @timeit
+def part1():
+    dial_history = []
+
+    dial = 50
+
+    dial_max = 100
+
+    dial_history.append(dial)
+
+    input = get_input("day1/input.txt")
+
+    for i in input: 
+        if (i[0] == "L"):
+            dial -= int(i[1:])
+        if (i[0] == "R"):
+            dial += int(i[1:])
+        dial = dial % dial_max
+        # print(i)
+        # print(dial)
+        dial_history.append(dial)
+
+    return dial_history.count(0)
+
+
+
+@timeit
 def part2():
     dial_history = []
 
@@ -49,4 +75,8 @@ def part2():
     # print(dial_0s)
     return dial_0s
 
+print ("Part 1")
+print(part1())
+
+print("Part 2")
 print(part2())
