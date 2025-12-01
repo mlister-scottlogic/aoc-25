@@ -1,15 +1,4 @@
-import time
-from functools import wraps
-
-def timeit(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        start = time.perf_counter()
-        result = func(*args, **kwargs)
-        end = time.perf_counter()
-        print(f"{func.__name__} took {end - start:.6f} seconds")
-        return result
-    return wrapper
+from support.timers import timeit
 
 def get_input(filename):
     text_file = open(filename, "r")
@@ -27,8 +16,8 @@ def part2():
 
     dial_history.append(dial)
 
-    # input = get_input("example.txt")
-    input = get_input("input.txt")
+    # input = get_input("day1/example.txt")
+    input = get_input("day1/input.txt")
 
     for i in input: 
         if (i[0] == "L"):
@@ -54,7 +43,7 @@ def part2():
         # print(i.strip())
         # print("dial ", dial)
         # print("times 0 ", dial_0s)
-        dial_history.append(dial)
+        # dial_history.append(dial)
 
     # print("Answer:")
     # print(dial_0s)
