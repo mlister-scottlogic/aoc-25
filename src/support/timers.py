@@ -1,6 +1,7 @@
 import time
 from functools import wraps
 
+
 def timeit(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -9,4 +10,5 @@ def timeit(func):
         end = time.perf_counter()
         print(f"{func.__name__} took {end - start:.6f} seconds")
         return result
+
     return wrapper
