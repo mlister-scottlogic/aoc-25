@@ -6,13 +6,11 @@ def get_input(filename):
 
 @timeit
 def part1():
-    dial_history = []
-
     dial = 50
 
     dial_max = 100
 
-    dial_history.append(dial)
+    count = 0
 
     input = get_input("day1/input.txt")
 
@@ -24,23 +22,21 @@ def part1():
         dial = dial % dial_max
         # print(i)
         # print(dial)
-        dial_history.append(dial)
+        if (dial == 0):
+            count += 1
 
-    return dial_history.count(0)
+    return count
 
 
 
 @timeit
 def part2():
-    dial_history = []
-
     dial = 50
 
     dial_max = 100
 
     dial_0s = 0
 
-    dial_history.append(dial)
 
     # input = get_input("day1/example.txt")
     input = get_input("day1/input.txt")
@@ -69,7 +65,6 @@ def part2():
         # print(i.strip())
         # print("dial ", dial)
         # print("times 0 ", dial_0s)
-        # dial_history.append(dial)
 
     # print("Answer:")
     # print(dial_0s)
