@@ -22,8 +22,8 @@ def part1(input_file: str):
         lower = int(input[0])
         higher = int(input[1])
 
-        for j in range(lower, higher + 1):
-            value_to_check = str(j)
+        for current_value in range(lower, higher + 1):
+            value_to_check = str(current_value)
             ## If odd number it can't be 2 repeating patterns
             if len(value_to_check) % 2 == 0:
                 half_point = math.floor(len(value_to_check) / 2)
@@ -40,7 +40,7 @@ def part1(input_file: str):
                     # print(first_part)
                     # print(second_part)
                     # print(value_to_check)
-                    count += j
+                    count += current_value
 
     return count
 
@@ -59,19 +59,19 @@ def part2(input_file: str):
         lower = int(input[0])
         higher = int(input[1])
 
-        for j in range(lower, higher + 1):
-            value_to_check = str(j)
+        for current_value in range(lower, higher + 1):
+            value_to_check = str(current_value)
 
             if len(value_to_check) > 1:
-                for k in range(1, max(2, len(value_to_check))):
+                for slice_size in range(1, len(value_to_check)):
                     # Only need to check if values neatly divide
-                    if len(value_to_check) % k == 0:
+                    if len(value_to_check) % slice_size == 0:
                         # print(f"------------{value_to_check}  {k}--------------")
                         values = [
-                            value_to_check[l : l + k]
-                            for l in range(0, len(value_to_check), k)
+                            value_to_check[l : l + slice_size]
+                            for l in range(0, len(value_to_check), slice_size)
                         ]
-                        unique_values = dict.fromkeys(values)
+                        unique_values = set(values)
 
                         # print(values)
                         # print(unique_values)
@@ -79,8 +79,8 @@ def part2(input_file: str):
                         if len(unique_values) == 1:
                             # print(values)
                             # print(unique_values)
-                            # print(j)
-                            count += j
+                            # print(current_value)
+                            count += current_value
                             break
     return count
 
