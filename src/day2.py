@@ -81,6 +81,10 @@ def part2(input_file: str):
                             # print(unique_values)
                             # print(current_value)
                             count += current_value
+
+                            ## Only count number once, e.g.
+                            ## 222222 would hit
+                            ## slice sizes, 1,2,3
                             break
     return count
 
