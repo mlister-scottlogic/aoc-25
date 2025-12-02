@@ -13,7 +13,7 @@ def get_input(filename):
 @timeit
 def part1(input_file: str):
     inputs = get_input(input_file)
-    print(inputs)
+    # print(inputs)
     count = 0
 
     for input in inputs:
@@ -48,6 +48,40 @@ def part1(input_file: str):
 @timeit
 def part2(input_file: str):
     count = 0
+
+    inputs = get_input(input_file)
+    # print(inputs)
+    count = 0
+
+    for input in inputs:
+        # print(input)
+
+        lower = int(input[0])
+        higher = int(input[1])
+
+        for j in range(lower, higher + 1):
+            value_to_check = str(j)
+
+            if len(value_to_check) > 1:
+                for k in range(1, max(2, len(value_to_check))):
+                    # Only need to check if values neatly divide
+                    if len(value_to_check) % k == 0:
+                        # print(f"------------{value_to_check}  {k}--------------")
+                        values = [
+                            value_to_check[l : l + k]
+                            for l in range(0, len(value_to_check), k)
+                        ]
+                        unique_values = dict.fromkeys(values)
+
+                        # print(values)
+                        # print(unique_values)
+
+                        if len(unique_values) == 1:
+                            # print(values)
+                            # print(unique_values)
+                            # print(j)
+                            count += j
+                            break
     return count
 
 
@@ -55,6 +89,6 @@ print("Part 1")
 # print(part1("day2/example.txt"))
 print(part1("day2/input.txt"))
 
-# print("Part 2")
+print("Part 2")
 # print(part2("day2/example.txt"))
-# print(part2("day2/input.txt"))
+print(part2("day2/input.txt"))
