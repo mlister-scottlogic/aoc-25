@@ -31,14 +31,37 @@ def joltage2(batteries: List[int], battery_size: int):
 
     current_best = joltage2(batteries[1:], battery_size)
 
-    current_min = min(current_best)
+    ## Turn off first thats less than batteries 0
 
-    ## Turn off earliest occurence of minimum?
-    # print(f"--- {batteries[0]} --- {current_best} --- {batteries} --- {current_min}")
+    # print(f"--- {batteries[0]} --- {current_best} --- {batteries}")
 
     if batteries[0] >= current_best[0]:
-        current_best.remove(current_min)
+        # First element where one on right is bigger or failing that the smallest
 
+        best_element_to_remove = None
+        # Needs to be bigger than something (should probably use none or something)
+        last_element = 99
+
+        for index, value in enumerate(current_best):
+            if value > last_element:
+                # last element is the one we want to remove
+                best_element_to_remove = index - 1
+                # print(
+                #     best_element_to_remove,
+                #     current_best,
+                #     current_best[best_element_to_remove],
+                # )
+                break
+            last_element = value
+        else:
+            if best_element_to_remove == None:
+                # print("overriding last value")
+                best_element_to_remove = current_best.index(min(current_best))
+                # print(best_element_to_remove)
+
+        current_best.pop(best_element_to_remove)
+        # print("New value")
+        # print(batteries[0], *current_best)
         return [batteries[0], *current_best]
 
     return current_best
@@ -96,12 +119,20 @@ def part2(input_file: str):
         # print(f"------ {i} --- {best_value} --- {jolt} ------")
         total += jolt
 
+        best_value2 = joltage2(i, 12)
+        # print(best_value)
+        best_value_strings2 = [str(i) for i in best_value2]
+        jolt2 = int("".join(best_value_strings2))
+
+        if jolt != jolt2:
+            print(i, jolt, jolt2)
+
     return total
 
 
 print("Part 1")
 # print(part1("day3/example.txt"))
-print(part1("day3/input.txt"))
+# print(part1("day3/input.txt"))
 
 print("Part 2")
 # print(part2("day3/example.txt"))
