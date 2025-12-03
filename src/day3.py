@@ -53,13 +53,14 @@ def joltage3(batteries: List[int], battery_size):
         return [max(batteries)]
 
     # Find highest digit with enough values after it
-    best_digit = max(batteries[0 : (len(batteries) + 1 - battery_size)])
+    new_battery_size = battery_size - 1
+    best_digit = max(batteries[0 : (len(batteries) - new_battery_size)])
 
     index_of_best = batteries.index(best_digit)
 
     # print(best_digit, index_of_best)
 
-    return [best_digit, *joltage3(batteries[index_of_best + 1 :], battery_size - 1)]
+    return [best_digit, *joltage3(batteries[index_of_best + 1 :], new_battery_size)]
 
 
 @timeit
