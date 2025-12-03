@@ -44,6 +44,24 @@ def joltage2(batteries: List[int], battery_size: int):
     return current_best
 
 
+def joltage3(batteries: List[int], battery_size):
+    ## Find higest number with battery_size - 1 digits after it
+    ## Repeat
+    # print(batteries, battery_size)
+
+    if battery_size == 1:
+        return [max(batteries)]
+
+    # Find highest digit with enough values after it
+    best_digit = max(batteries[0 : (len(batteries) + 1 - battery_size)])
+
+    index_of_best = batteries.index(best_digit)
+
+    # print(best_digit, index_of_best)
+
+    return [best_digit, *joltage3(batteries[index_of_best + 1 :], battery_size - 1)]
+
+
 @timeit
 def part1(input_file: str):
     total = 0
@@ -52,7 +70,7 @@ def part1(input_file: str):
     # print(inputs)
 
     for i in inputs:
-        best_value = joltage2(i, 2)
+        best_value = joltage3(i, 2)
         best_value_strings = [str(i) for i in best_value]
         jolt = int("".join(best_value_strings))
         # print(f"------ {i} --- {best_value} --- {jolt} ------")
@@ -70,11 +88,11 @@ def part2(input_file: str):
     # print(inputs)
 
     for i in inputs:
-        best_value = joltage2(i, 12)
+        best_value = joltage3(i, 12)
         # print(best_value)
         best_value_strings = [str(i) for i in best_value]
         jolt = int("".join(best_value_strings))
-        print(f"------ {i} --- {best_value} --- {jolt} ------")
+        # print(f"------ {i} --- {best_value} --- {jolt} ------")
         total += jolt
 
     return total
@@ -82,8 +100,8 @@ def part2(input_file: str):
 
 print("Part 1")
 # print(part1("day3/example.txt"))
-# print(part1("day3/input.txt"))
+print(part1("day3/input.txt"))
 
 print("Part 2")
-print(part2("day3/example.txt"))
-# print(part2("day3/input.txt"))
+# print(part2("day3/example.txt"))
+print(part2("day3/input.txt"))
