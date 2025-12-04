@@ -56,11 +56,12 @@ def calculate_rolls_removed(
         # For all rolls
         if input_map[point]:
             nearby_rolls = 0
-            for x in range(-1, 2):
-                for y in range(-1, 2):
+            (x, y) = point
+            for x_delta in range(-1, 2):
+                for y_delta in range(-1, 2):
                     # ignore 0,0
-                    if not (x == 0 and y == 0):
-                        point_to_check = (point[0] + y, point[1] + x)
+                    if not (x_delta == 0 and y_delta == 0):
+                        point_to_check = (x + x_delta, y + y_delta)
 
                         roll_to_check = input_map.get(point_to_check, None)
 
