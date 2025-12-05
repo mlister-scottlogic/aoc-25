@@ -20,9 +20,18 @@ def get_input(filename) -> tuple[List[tuple[int, int]], List[int]]:
 
 @timeit
 def part1(input_file: str):
-    inputs = get_input(input_file)
+    ranges, ids = get_input(input_file)
 
-    print(inputs)
+    total = 0
+
+    for id in ids:
+        for range in ranges:
+            if id >= range[0] and id <= range[1]:
+                total += 1
+                # print(id)
+                break
+
+    return total
 
 
 @timeit
@@ -31,8 +40,8 @@ def part2(input_file: str):
 
 
 print("Part 1")
-print(part1("day5/example.txt"))
-# print(part1("day5/input.txt"))
+# print(part1("day5/example.txt"))
+print(part1("day5/input.txt"))
 
 print("Part 2")
 # print(part2("day5/example.txt"))
