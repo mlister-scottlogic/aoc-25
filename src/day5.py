@@ -60,9 +60,7 @@ def part1(input_file: str):
 
 
 @timeit
-def part2(input_file: str):
-    ranges, _ = get_input(input_file)
-
+def part2(ranges: List[tuple[int, int]]):
     ranges2 = SortedSet([IdRange(r[0], r[1]) for r in ranges])
 
     changed = True
@@ -105,5 +103,7 @@ print("Part 1")
 # print(part1("day5/input.txt"))
 
 print("Part 2")
+ranges, _ = get_input("day5/input.txt")
+
 # print(part2("day5/example.txt"))
-print(part2("day5/input.txt"))
+print(part2(ranges))
