@@ -31,12 +31,7 @@ def convert_target_to_int(target: str) -> int:
 
 
 def convert_button_to_int(button: List[str]) -> int:
-    total = 0
-
-    for b in button:
-        total += 2 ** (int(b))
-
-    return total
+    return sum([2 ** (int(b)) for b in button])
 
 
 @timeit
