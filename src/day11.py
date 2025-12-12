@@ -10,10 +10,10 @@ from functools import reduce
 
 class hashabledict(dict):
     def __key(self):
-        return tuple((k, self[k]) for k in sorted(self))
+        return tuple((k, self[k]) for k in self)
 
     def __hash__(self):
-        return hash(self.__key())
+        return hash(1)
 
     def __eq__(self, other):
         return self.__key() == other.__key()
@@ -37,6 +37,7 @@ def get_input(filename) -> dict[str, List[str]]:
     return new_lines
 
 
+@cache
 def number_of_paths(node: str, all_nodes):
     if node == "out":
         return 1
