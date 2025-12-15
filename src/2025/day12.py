@@ -103,7 +103,7 @@ def part1(input_file: str):
             [max_shape_size[k] * required_presents[k] for k in required_presents.keys()]
         )
 
-        print(total_area, present_size)
+        # print(total_area, present_size)
 
         if present_size < total_area:
             total += 1
