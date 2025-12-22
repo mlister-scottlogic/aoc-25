@@ -13,8 +13,8 @@ def get_input(filename):
 def part1(input_file, preamble_size):
     inputs = get_input(input_file)
 
-    for i in range(preamble_size, len(inputs)):
-        current_value = inputs[i]
+    for i, current_value in enumerate(inputs[preamble_size:], preamble_size):
+        # print(i, current_value)
         previous_values = inputs[i - preamble_size : i]
         # print(previous_values)
 
@@ -46,10 +46,10 @@ def part2(input_file, target):
     return -1
 
 
-# print("Part 1")
-# print(part1("day9/example.txt", 5))
-# print(part1("day9/input.txt", 25))
+print("Part 1")
+print(part1("day9/example.txt", 5))
+print(part1("day9/input.txt", 25))
 
-print("Part 2")
-print(part2("day9/example.txt", 127))
-print(part2("day9/input.txt", 10884537))
+# print("Part 2")
+# print(part2("day9/example.txt", 127))
+# print(part2("day9/input.txt", 10884537))
